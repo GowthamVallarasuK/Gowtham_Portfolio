@@ -1,7 +1,42 @@
-import { Download, Github, Linkedin, Mail, Code, Monitor, Smartphone, Database, Server, Globe, Zap } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Download, Github, Linkedin, Mail, Code } from "lucide-react"
 import { PERSONAL_INFO, SOCIAL_LINKS } from "../constants/index.js"
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const rect = cardRef.current?.getBoundingClientRect()
+      if (rect) {
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20
+        setMousePosition({ x, y })
+      }
+    }
+
+    const handleMouseLeave = () => {
+      setMousePosition({ x: 0, y: 0 })
+      setIsHovered(false)
+    }
+
+    const card = cardRef.current
+    if (card) {
+      card.addEventListener("mousemove", handleMouseMove)
+      card.addEventListener("mouseenter", () => setIsHovered(true))
+      card.addEventListener("mouseleave", handleMouseLeave)
+    }
+
+    return () => {
+      if (card) {
+        card.removeEventListener("mousemove", handleMouseMove)
+        card.removeEventListener("mouseleave", handleMouseLeave)
+      }
+    }
+  }, [])
+
   const socialIcons = {
     github: Github,
     linkedin: Linkedin,
@@ -9,94 +44,286 @@ const Hero = () => {
     leetcode: Code,
   }
 
+  const techIcons = [
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", delay: 0 },
+    { name: "Node", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", delay: 0.1 },
+    { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", delay: 0.2 },
+    { name: "Spring", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg", delay: 0.3 },
+  ]
+
   return (
-    <section id="home" className="min-h-screen flex items-center px-4 pt-16">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="min-h-screen flex items-center px-4 pt-20 pb-12 relative overflow-hidden">
+      {/* Subtle purple gradient aura background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-purple-50/30 to-violet-50/20 pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-violet-200/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
-          <div className="text-left">
-            <div className="mb-8">
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                {PERSONAL_INFO.name}
+          <div className="text-left space-y-8 animate-fade-in-up">
+            {/* Name with gradient accent */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-bold leading-tight">
+                <span className="text-gray-900">{PERSONAL_INFO.name.split(' ')[0]}</span>
+                <br />
+                <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-violet-600 bg-clip-text text-transparent">
+                  {PERSONAL_INFO.name.split(' ')[1]}
+                </span>
               </h1>
-              <h2 className="text-2xl md:text-3xl text-gray-300 mb-2">{PERSONAL_INFO.title}</h2>
-              <p className="text-lg md:text-xl text-gray-400 mb-8">{PERSONAL_INFO.subtitle}</p>
-              <p className="text-gray-400 max-w-2xl leading-relaxed">
-                Passionate full-stack developer specializing in modern web technologies. I create scalable applications with
-                clean code and exceptional user experiences.
-              </p>
+              
+              {/* Role */}
+              <div className="flex items-center gap-3 mt-6">
+                <div className="h-1 w-12 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full" />
+                <h2 className="text-xl md:text-2xl text-gray-700 font-medium">
+                  Full Stack Developer | MERN & Spring
+                </h2>
+              </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex space-x-6 mb-8">
-              {Object.entries(SOCIAL_LINKS).map(([key, url]) => {
-                if (key === "resume") return null
-                const Icon = socialIcons[key]
-                return (
-                  <a
-                    key={key}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors hover:scale-110 transform"
+            {/* Value-driven tagline */}
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
+              Building <span className="font-semibold text-purple-700">scalable</span> applications with{" "}
+              <span className="font-semibold text-purple-700">clean code</span> and{" "}
+              <span className="font-semibold text-purple-700">exceptional performance</span>.
+            </p>
+
+            {/* Floating 3D Tech Stack Icons */}
+            <div className="flex items-center gap-4 pt-4">
+              <span className="text-sm text-gray-500 font-medium">Tech Stack:</span>
+              <div className="flex gap-3">
+                {techIcons.map((tech, index) => (
+                  <div
+                    key={tech.name}
+                    className="relative group"
+                    style={{
+                      animation: `float 6s ease-in-out infinite`,
+                      animationDelay: `${tech.delay}s`,
+                    }}
                   >
-                    <Icon size={24} className="text-gray-300 hover:text-blue-400" />
-                  </a>
-                )
-              })}
+                    <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-md border border-purple-200/50 shadow-lg shadow-purple-200/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-purple-300/40 hover:-translate-y-1 hover:bg-white/80">
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-7 h-7 object-contain"
+                        onError={(e) => {
+                          e.target.style.display = "none"
+                        }}
+                      />
+                    </div>
+                    {/* Tooltip */}
+                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <span className="text-xs text-gray-700 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg border border-purple-100/50 whitespace-nowrap">
+                        {tech.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Resume Download */}
-            <div className="flex">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href={SOCIAL_LINKS.resume}
-                download="Arun_Rajasekaran_Resume.pdf"
+                download="Gowtham_Vallarasu_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors hover:scale-105 transform"
+                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600/90 to-violet-600/90 backdrop-blur-md text-white font-semibold rounded-xl border border-purple-300/30 shadow-xl shadow-purple-500/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-400/40 hover:border-purple-300/50"
+                style={{
+                  transform: "translateZ(0)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
               >
                 <Download size={20} className="mr-2" />
                 Download Resume
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-700/50 to-violet-700/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-md" />
               </a>
+
+              {/* Social Icons in Circular Glass Buttons */}
+              <div className="flex gap-3">
+                {Object.entries(SOCIAL_LINKS).map(([key, url]) => {
+                  if (key === "resume") return null
+                  const Icon = socialIcons[key]
+                  return (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group w-12 h-12 rounded-full bg-white/60 backdrop-blur-md border border-purple-200/50 shadow-lg shadow-purple-200/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-purple-300/40 hover:-translate-y-1 hover:bg-white/80 hover:border-purple-300/60"
+                      style={{
+                        transform: "translateZ(0)",
+                      }}
+                    >
+                      <Icon size={20} className="text-purple-700 group-hover:text-purple-600 transition-colors" />
+                    </a>
+                  )
+                })}
+              </div>
             </div>
           </div>
 
-          {/* Right Side - Development SVGs */}
-          <div className="hidden lg:flex justify-center items-center relative">
-            <div className="relative w-96 h-96">
-              {/* Central Code Icon */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-2xl">
-                <Code size={48} className="text-white" />
-              </div>
-              
-              {/* Floating Icons */}
-              <div className="absolute top-8 left-8 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '0s'}}>
-                <Monitor size={32} className="text-blue-400" />
-              </div>
-              
-              <div className="absolute top-8 right-8 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '0.5s'}}>
-                <Smartphone size={32} className="text-green-400" />
-              </div>
-              
-              <div className="absolute bottom-8 left-8 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '1s'}}>
-                <Database size={32} className="text-yellow-400" />
-              </div>
-              
-              <div className="absolute bottom-8 right-8 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '1.5s'}}>
-                <Server size={32} className="text-red-400" />
-              </div>
-              
-              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '2s'}}>
-                <Globe size={32} className="text-purple-400" />
-              </div>
-              
-              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 p-4 bg-gray-800 rounded-full shadow-lg animate-bounce" style={{animationDelay: '2.5s'}}>
-                <Zap size={32} className="text-orange-400" />
+          {/* Right Visual - 3D Glass Card with Interactive Elements */}
+          <div className="hidden lg:flex justify-center items-center relative h-[600px]">
+            {/* Floating 3D Shapes Background */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Sphere 1 */}
+              <div
+                className="absolute top-20 right-20 w-24 h-24 rounded-full bg-gradient-to-br from-purple-200/40 to-violet-300/30 backdrop-blur-sm border border-purple-100/50 shadow-xl"
+                style={{
+                  transform: `translate3d(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px, 0)`,
+                  animation: "float 8s ease-in-out infinite",
+                  transition: "transform 0.1s ease-out",
+                }}
+              />
+              {/* Cube */}
+              <div
+                className="absolute bottom-32 left-16 w-16 h-16 bg-gradient-to-br from-purple-300/30 to-violet-400/20 backdrop-blur-sm border border-purple-100/50 shadow-lg rotate-45"
+                style={{
+                  transform: `translate3d(${mousePosition.x * -0.2}px, ${mousePosition.y * -0.2}px, 0) rotate(45deg)`,
+                  animation: "float 10s ease-in-out infinite",
+                  animationDelay: "1s",
+                  transition: "transform 0.1s ease-out",
+                }}
+              />
+              {/* Abstract Shape */}
+              <div
+                className="absolute top-1/2 right-8 w-20 h-20 bg-gradient-to-br from-violet-200/30 to-purple-300/20 backdrop-blur-sm border border-purple-100/50 shadow-lg rounded-3xl rotate-12"
+                style={{
+                  transform: `translate3d(${mousePosition.x * 0.25}px, ${mousePosition.y * 0.25}px, 0) rotate(12deg)`,
+                  animation: "float 12s ease-in-out infinite",
+                  animationDelay: "2s",
+                  transition: "transform 0.1s ease-out",
+                }}
+              />
+            </div>
+
+            {/* Main 3D Glass Card */}
+            <div
+              ref={cardRef}
+              className="relative w-full max-w-lg"
+              style={{
+                perspective: "1000px",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Soft glow behind card */}
+              <div
+                className="absolute -inset-8 bg-gradient-to-tr from-purple-200/30 via-white/0 to-violet-300/30 rounded-3xl blur-2xl opacity-60"
+                style={{
+                  transform: `translate3d(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px, 0)`,
+                  transition: "transform 0.1s ease-out",
+                }}
+              />
+
+              {/* Glass Card */}
+              <div
+                className="relative rounded-3xl bg-white/60 backdrop-blur-xl border border-purple-200/50 shadow-2xl shadow-purple-300/20 overflow-hidden"
+                style={{
+                  transform: isHovered
+                    ? `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${mousePosition.y * -0.5}deg) translateZ(20px)`
+                    : "perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)",
+                  transformStyle: "preserve-3d",
+                  transition: "transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)",
+                  boxShadow: isHovered
+                    ? "0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(147, 51, 234, 0.1)"
+                    : "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(147, 51, 234, 0.05)",
+                }}
+              >
+                {/* Terminal Header */}
+                <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-purple-50/60 via-white/60 to-violet-50/60 border-b border-purple-200/40 backdrop-blur-md">
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400 shadow-sm" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-sm" />
+                      <div className="w-3 h-3 rounded-full bg-purple-400 shadow-sm" />
+                    </div>
+                    <span className="text-sm font-mono text-gray-600">terminal</span>
+                  </div>
+                  <div className="px-3 py-1 rounded-full bg-purple-100/60 backdrop-blur-sm border border-purple-200/50 text-xs font-semibold text-purple-700 shadow-sm">
+                    {PERSONAL_INFO.name.split(' ')[0]}
+                  </div>
+                </div>
+
+                {/* Code Block */}
+                <div className="p-6 bg-gradient-to-br from-gray-50/30 to-white/30 backdrop-blur-sm">
+                  <div className="rounded-xl bg-white/50 backdrop-blur-lg border border-purple-200/40 shadow-inner shadow-purple-200/10 overflow-hidden">
+                    <div className="px-4 py-2 bg-purple-50/40 backdrop-blur-sm border-b border-purple-200/30 flex items-center justify-between">
+                      <span className="text-xs font-mono text-purple-700">developer.ts</span>
+                      <span className="text-[10px] text-gray-500 font-mono">● Live</span>
+                    </div>
+                    <div className="p-5 font-mono text-sm space-y-2" style={{ fontFamily: "'Fira Code', 'Courier New', monospace" }}>
+                      <div className="flex gap-2">
+                        <span className="text-purple-600">const</span>
+                        <span className="text-gray-900 font-semibold">developer</span>
+                        <span className="text-gray-600">=</span>
+                        <span className="text-purple-600">{`{`}</span>
+                      </div>
+                      <div className="ml-4 flex gap-2">
+                        <span className="text-gray-500">role:</span>
+                        <span className="text-purple-700">"Full Stack Engineer"</span>
+                        <span className="text-gray-400">,</span>
+                      </div>
+                      <div className="ml-4 flex gap-2">
+                        <span className="text-gray-500">stack:</span>
+                        <span className="text-purple-700">["React", "Node", "Spring"]</span>
+                        <span className="text-gray-400">,</span>
+                      </div>
+                      <div className="ml-4 flex gap-2">
+                        <span className="text-gray-500">focus:</span>
+                        <span className="text-purple-700">"scalable · clean · modern"</span>
+                        <span className="text-gray-400">,</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-purple-600">{`}`}</span>
+                        <span className="text-gray-400">;</span>
+                      </div>
+                      <div className="pt-2 flex items-center gap-2">
+                        <span className="text-purple-600 animate-pulse">▋</span>
+                        <span className="text-gray-400 text-xs">Ready to build...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ambient Occlusion Shadow */}
+                <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{
+                  background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.02) 100%)",
+                  mixBlendMode: "multiply",
+                }} />
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) translateZ(0);
+          }
+          50% {
+            transform: translateY(-20px) translateZ(0);
+          }
+        }
+        
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out;
+        }
+      `}</style>
     </section>
   )
 }

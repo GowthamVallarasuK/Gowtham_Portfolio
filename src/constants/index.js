@@ -2,24 +2,24 @@ import { number } from "zod";
 
 // Personal Information
 export const PERSONAL_INFO = {
-  name: 'Arun Rajasekaran',
+  name: 'Gowtham Vallarasu',
   title: 'Full Stack Developer',
-  subtitle: 'MERN & Java Spring Boot',
-  email: 'arunrajasekaran1209@gmail.com',
+  subtitle: 'MERN STACK DEVELOPER',
+  email: 'gowthamvallarasu1234@gmail.com',
   location: 'Coimbatore, India',
   college: 'Sri Eshwar College Of Engineering',
   educator: 'Program Professor',
-  number: '6374181274'
+  number: '9345865017'
 };
 
 // Social Links
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/ArunRajasekaran48',
-  linkedin: 'https://www.linkedin.com/in/arun-rajasekaran-617538291/',
-  email: 'mailto:arunrajasekaran1209@gmail.com',
+  github: 'https://github.com/GowthamVallarasuK',
+  linkedin: 'https://www.linkedin.com/in/gowtham-vallarasu-99b882279/',
+  email: 'https://mail.google.com/mail/u/0/#inbox',
   leetcode: 'https://leetcode.com/u/arunrajasekaran1209/',
   resume:
-    'https://drive.google.com/drive/folders/1R3QvU75V1GJOcYnhiFm9lnCWKmAN1zZm',
+    'https://drive.google.com/file/d/1FVM80zTlDYQmbfjxaxSLr7b3T6zB2uDi/view?usp=drive_link',
 };
 
 // Technologies with Icons
@@ -43,31 +43,26 @@ export const TECHNOLOGIES = [
 
 // Projects / My Works
 export const MY_WORKS = [
+  
   {
-    title: 'Program Professor',
+    title: 'Gemini AI Clone',
     description:
-      'Grown YouTube channel "Program Professor" to over 1050+ subscribers by delivering beginner-friendly Java programming tutorials that simplify complex concepts into easy-to-follow lessons.',
-    youtube: 'https://www.youtube.com/@ProgramProfessor',
+      'A Gemini AI–inspired conversational AI platform built with a modern full-stack architecture, featuring real-time chat, prompt-based AI responses, conversation history, authentication, and a clean, responsive UI powered by advanced LLM integrations.',
+    technologies: ['React', 'API key Gateway', 'JWT', 'MongoDB','Tailwind'],
+    github: 'https://github.com/GowthamVallarasuK/Gemini-AI-Clone-.git',
   },
   {
-    title: 'MERN Pet Adoption Platform',
+    title: 'PipelineX',
     description:
-      'A comprehensive pet adoption platform built with MERN stack featuring user authentication, pet listings, adoption requests, and admin dashboard.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB',],
-    github: 'https://github.com/ArunRajasekaran48/MERN-PetAdoption-Platform',
+      'PipelineX is a no-code / low-code machine learning pipeline builder that enables users to design, configure, and execute end-to-end ML workflows through an intuitive visual interface, supporting data ingestion, preprocessing, model training, evaluation, and deployment without writing code. ',
+    technologies: ['React', 'Node', 'Express', 'MongoDB', 'Python','Tailwind'],
+    github: 'https://github.com/GowthamVallarasuK/PipelineX.git',
   },
   {
-    title: 'Truckshare',
+    title: 'Browser Based Security Management System',
     description:
-      'A microservices-based logistics platform connecting businesses with truck owners, enabling shipment requests dynamic truck matching, secure booking with payment updates, and real-time GPS tracking for seamless and transparent transportation.',
-    technologies: ['Spring Boot Microservices', 'PostgreSQL', 'Eureka', 'API Gateway', 'Resilience4j','React'],
-    github: 'https://github.com/ArunRajasekaran48/Truckshare',
-  },
-  {
-    title: 'Inventory Stock Alert Tool',
-    description:
-      'A smart inventory management system with real-time stock alerts, automated notifications and separate interfaces for users and administrators.',
-    technologies: ['React', 'Spring Boot', 'MYSQL'],
-    github: 'https://github.com/ArunRajasekaran48/Inventory-StockAlert-Tool',
+      'A browser-based security management system that enables centralized monitoring and control of security operations through a web interface, featuring role-based access control, real-time alerts, audit logging, and secure data management.',
+    technologies: ['React', 'Scikit-Learn', 'MongoDB','Node','Express'],
+    
   }
 ];
