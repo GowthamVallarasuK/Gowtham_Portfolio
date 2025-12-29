@@ -64,33 +64,33 @@ const Hero = () => {
           <div className="text-left space-y-8 animate-fade-in-up">
             {/* Name with gradient accent */}
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-8xl font-bold leading-tight">
-                <span className="text-gray-900">{PERSONAL_INFO.name.split(' ')[0]}</span>
+              <h1 className="text-5xl md:text-7xl font-light leading-tight tracking-tight">
+                <span className="text-gray-800 font-extralight">{PERSONAL_INFO.name.split(' ')[0]}</span>
                 <br />
-                <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-violet-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-violet-600 bg-clip-text text-transparent font-normal">
                   {PERSONAL_INFO.name.split(' ')[1]}
                 </span>
               </h1>
               
               {/* Role */}
               <div className="flex items-center gap-3 mt-6">
-                <div className="h-1 w-12 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full" />
-                <h2 className="text-xl md:text-2xl text-gray-700 font-medium">
+                <div className="h-0.5 w-12 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full" />
+                <h2 className="text-lg md:text-xl text-gray-600 font-light tracking-wide">
                   Full Stack Developer | MERN & Spring
                 </h2>
               </div>
             </div>
 
             {/* Value-driven tagline */}
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
-              Building <span className="font-semibold text-purple-700">scalable</span> applications with{" "}
-              <span className="font-semibold text-purple-700">clean code</span> and{" "}
-              <span className="font-semibold text-purple-700">exceptional performance</span>.
+            <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-xl font-light">
+              Building <span className="font-medium text-purple-600">scalable</span> applications with{" "}
+              <span className="font-medium text-purple-600">clean code</span> and{" "}
+              <span className="font-medium text-purple-600">exceptional performance</span>.
             </p>
 
             {/* Floating 3D Tech Stack Icons */}
             <div className="flex items-center gap-4 pt-4">
-              <span className="text-sm text-gray-500 font-medium">Tech Stack:</span>
+              <span className="text-sm text-black font-light tracking-wide">Tech Stack:</span>
               <div className="flex gap-3">
                 {techIcons.map((tech, index) => (
                   <div
@@ -164,22 +164,22 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Visual - 3D Glass Card with Interactive Elements */}
+          {/* Right Visual - Enhanced 3D Glass Card with Interactive Elements */}
           <div className="hidden lg:flex justify-center items-center relative h-[600px]">
-            {/* Floating 3D Shapes Background */}
+            {/* Enhanced Floating 3D Shapes Background */}
             <div className="absolute inset-0 pointer-events-none">
-              {/* Sphere 1 */}
+              {/* Sphere 1 - Enhanced */}
               <div
-                className="absolute top-20 right-20 w-24 h-24 rounded-full bg-gradient-to-br from-purple-200/40 to-violet-300/30 backdrop-blur-sm border border-purple-100/50 shadow-xl"
+                className="absolute top-20 right-20 w-28 h-28 rounded-full bg-gradient-to-br from-purple-300/50 to-violet-400/40 backdrop-blur-md border border-purple-200/60 shadow-2xl"
                 style={{
                   transform: `translate3d(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px, 0)`,
                   animation: "float 8s ease-in-out infinite",
                   transition: "transform 0.1s ease-out",
                 }}
               />
-              {/* Cube */}
+              {/* Cube - Enhanced */}
               <div
-                className="absolute bottom-32 left-16 w-16 h-16 bg-gradient-to-br from-purple-300/30 to-violet-400/20 backdrop-blur-sm border border-purple-100/50 shadow-lg rotate-45"
+                className="absolute bottom-32 left-16 w-20 h-20 bg-gradient-to-br from-purple-400/40 to-violet-500/30 backdrop-blur-md border border-purple-200/60 shadow-xl rotate-45"
                 style={{
                   transform: `translate3d(${mousePosition.x * -0.2}px, ${mousePosition.y * -0.2}px, 0) rotate(45deg)`,
                   animation: "float 10s ease-in-out infinite",
@@ -187,9 +187,9 @@ const Hero = () => {
                   transition: "transform 0.1s ease-out",
                 }}
               />
-              {/* Abstract Shape */}
+              {/* Abstract Shape - Enhanced */}
               <div
-                className="absolute top-1/2 right-8 w-20 h-20 bg-gradient-to-br from-violet-200/30 to-purple-300/20 backdrop-blur-sm border border-purple-100/50 shadow-lg rounded-3xl rotate-12"
+                className="absolute top-1/2 right-8 w-24 h-24 bg-gradient-to-br from-violet-300/40 to-purple-400/30 backdrop-blur-md border border-purple-200/60 shadow-xl rounded-3xl rotate-12"
                 style={{
                   transform: `translate3d(${mousePosition.x * 0.25}px, ${mousePosition.y * 0.25}px, 0) rotate(12deg)`,
                   animation: "float 12s ease-in-out infinite",
@@ -197,9 +197,19 @@ const Hero = () => {
                   transition: "transform 0.1s ease-out",
                 }}
               />
+              {/* New Floating Ring */}
+              <div
+                className="absolute top-1/3 left-12 w-16 h-16 border-2 border-purple-300/50 rounded-full backdrop-blur-sm shadow-lg"
+                style={{
+                  transform: `translate3d(${mousePosition.x * 0.15}px, ${mousePosition.y * 0.15}px, 0)`,
+                  animation: "float 14s ease-in-out infinite",
+                  animationDelay: "3s",
+                  transition: "transform 0.1s ease-out",
+                }}
+              />
             </div>
 
-            {/* Main 3D Glass Card */}
+            {/* Enhanced Main 3D Glass Card */}
             <div
               ref={cardRef}
               className="relative w-full max-w-lg"
@@ -208,90 +218,95 @@ const Hero = () => {
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Soft glow behind card */}
+              {/* Enhanced glow behind card */}
               <div
-                className="absolute -inset-8 bg-gradient-to-tr from-purple-200/30 via-white/0 to-violet-300/30 rounded-3xl blur-2xl opacity-60"
+                className="absolute -inset-10 bg-gradient-to-tr from-purple-300/40 via-white/10 to-violet-400/40 rounded-3xl blur-3xl opacity-70"
                 style={{
                   transform: `translate3d(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px, 0)`,
                   transition: "transform 0.1s ease-out",
                 }}
               />
 
-              {/* Glass Card */}
+              {/* Enhanced Glass Card */}
               <div
-                className="relative rounded-3xl bg-white/60 backdrop-blur-xl border border-purple-200/50 shadow-2xl shadow-purple-300/20 overflow-hidden"
+                className="relative rounded-3xl bg-white/70 backdrop-blur-2xl border border-purple-200/60 shadow-3xl shadow-purple-400/30 overflow-hidden"
                 style={{
                   transform: isHovered
-                    ? `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${mousePosition.y * -0.5}deg) translateZ(20px)`
+                    ? `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${mousePosition.y * -0.5}deg) translateZ(30px)`
                     : "perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)",
                   transformStyle: "preserve-3d",
                   transition: "transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)",
                   boxShadow: isHovered
-                    ? "0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(147, 51, 234, 0.1)"
-                    : "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(147, 51, 234, 0.05)",
+                    ? "0 30px 60px -12px rgba(147, 51, 234, 0.35), 0 0 0 1px rgba(147, 51, 234, 0.15)"
+                    : "0 25px 35px -5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(147, 51, 234, 0.08)",
                 }}
               >
-                {/* Terminal Header */}
-                <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-purple-50/60 via-white/60 to-violet-50/60 border-b border-purple-200/40 backdrop-blur-md">
+                {/* Enhanced Terminal Header */}
+                <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-purple-50/70 via-white/70 to-violet-50/70 border-b border-purple-200/50 backdrop-blur-lg">
                   <div className="flex items-center gap-3">
                     <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-400 shadow-sm" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-sm" />
-                      <div className="w-3 h-3 rounded-full bg-purple-400 shadow-sm" />
+                      <div className="w-3 h-3 rounded-full bg-red-400 shadow-md hover:scale-110 transition-transform cursor-pointer" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-md hover:scale-110 transition-transform cursor-pointer" />
+                      <div className="w-3 h-3 rounded-full bg-green-400 shadow-md hover:scale-110 transition-transform cursor-pointer" />
                     </div>
-                    <span className="text-sm font-mono text-gray-600">terminal</span>
+                    <span className="text-sm font-mono text-gray-700 font-medium">terminal</span>
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-purple-100/60 backdrop-blur-sm border border-purple-200/50 text-xs font-semibold text-purple-700 shadow-sm">
+                  <div className="px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-100/80 to-violet-100/70 backdrop-blur-sm border border-purple-200/60 text-xs font-bold text-purple-800 shadow-md">
                     {PERSONAL_INFO.name.split(' ')[0]}
                   </div>
                 </div>
 
-                {/* Code Block */}
-                <div className="p-6 bg-gradient-to-br from-gray-50/30 to-white/30 backdrop-blur-sm">
-                  <div className="rounded-xl bg-white/50 backdrop-blur-lg border border-purple-200/40 shadow-inner shadow-purple-200/10 overflow-hidden">
-                    <div className="px-4 py-2 bg-purple-50/40 backdrop-blur-sm border-b border-purple-200/30 flex items-center justify-between">
-                      <span className="text-xs font-mono text-purple-700">developer.ts</span>
-                      <span className="text-[10px] text-gray-500 font-mono">● Live</span>
+                {/* Enhanced Code Block */}
+                <div className="p-6 bg-gradient-to-br from-gray-50/40 to-white/40 backdrop-blur-lg">
+                  <div className="rounded-xl bg-white/60 backdrop-blur-xl border border-purple-200/50 shadow-inner shadow-purple-200/15 overflow-hidden">
+                    <div className="px-4 py-2 bg-gradient-to-r from-purple-50/60 to-violet-50/50 backdrop-blur-sm border-b border-purple-200/40 flex items-center justify-between">
+                      <span className="text-xs font-mono text-purple-800 font-semibold">developer.ts</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span className="text-[10px] text-gray-600 font-mono font-medium">● Live</span>
+                      </div>
                     </div>
-                    <div className="p-5 font-mono text-sm space-y-2" style={{ fontFamily: "'Fira Code', 'Courier New', monospace" }}>
+                    <div className="p-6 font-mono text-sm space-y-2" style={{ fontFamily: "'Fira Code', 'Courier New', monospace" }}>
                       <div className="flex gap-2">
-                        <span className="text-purple-600">const</span>
-                        <span className="text-gray-900 font-semibold">developer</span>
-                        <span className="text-gray-600">=</span>
-                        <span className="text-purple-600">{`{`}</span>
+                        <span className="text-purple-700 font-semibold">const</span>
+                        <span className="text-gray-900 font-bold">developer</span>
+                        <span className="text-gray-700">=</span>
+                        <span className="text-purple-700 font-semibold">{`{`}</span>
                       </div>
                       <div className="ml-4 flex gap-2">
-                        <span className="text-gray-500">role:</span>
-                        <span className="text-purple-700">"Full Stack Engineer"</span>
-                        <span className="text-gray-400">,</span>
+                        <span className="text-gray-600">role:</span>
+                        <span className="text-purple-800 font-medium">"Full Stack Engineer"</span>
+                        <span className="text-gray-500">,</span>
                       </div>
                       <div className="ml-4 flex gap-2">
-                        <span className="text-gray-500">stack:</span>
-                        <span className="text-purple-700">["React", "Node", "Spring"]</span>
-                        <span className="text-gray-400">,</span>
+                        <span className="text-gray-600">stack:</span>
+                        <span className="text-purple-800 font-medium">["React", "Node", "Spring"]</span>
+                        <span className="text-gray-500">,</span>
                       </div>
                       <div className="ml-4 flex gap-2">
-                        <span className="text-gray-500">focus:</span>
-                        <span className="text-purple-700">"scalable · clean · modern"</span>
-                        <span className="text-gray-400">,</span>
+                        <span className="text-gray-600">focus:</span>
+                        <span className="text-purple-800 font-medium">"scalable · clean · modern"</span>
+                        <span className="text-gray-500">,</span>
                       </div>
                       <div className="flex gap-2">
-                        <span className="text-purple-600">{`}`}</span>
-                        <span className="text-gray-400">;</span>
+                        <span className="text-purple-700 font-semibold">{`}`}</span>
+                        <span className="text-gray-500">;</span>
                       </div>
-                      <div className="pt-2 flex items-center gap-2">
-                        <span className="text-purple-600 animate-pulse">▋</span>
-                        <span className="text-gray-400 text-xs">Ready to build...</span>
+                      <div className="pt-3 flex items-center gap-2">
+                        <span className="text-purple-700 animate-pulse font-bold">▋</span>
+                        <span className="text-gray-500 text-xs font-medium">Ready to build amazing things...</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Ambient Occlusion Shadow */}
+                {/* Enhanced Ambient Effects */}
                 <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{
-                  background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.02) 100%)",
+                  background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(147, 51, 234, 0.03) 100%)",
                   mixBlendMode: "multiply",
                 }} />
+                <div className="absolute top-4 left-4 w-20 h-20 bg-white/30 rounded-full blur-2xl"></div>
+                <div className="absolute bottom-4 right-4 w-16 h-16 bg-purple-200/20 rounded-full blur-xl"></div>
               </div>
             </div>
           </div>
