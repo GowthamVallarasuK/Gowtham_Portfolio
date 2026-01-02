@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, User, Code2, Trophy, Target, Sparkles } from "lucide-react"
+import { GraduationCap, MapPin, User, Code2, Trophy, Target, Sparkles, BookOpen, Megaphone } from "lucide-react"
 import { PERSONAL_INFO } from "../constants/index.js"
 
 const About = () => {
@@ -41,10 +41,80 @@ const About = () => {
              }}></div>
         <div className="absolute bottom-1/4 right-1/5 w-16 h-16 border border-lavender-200/30 rounded-full backdrop-blur-sm" 
              style={{ 
-               transform: 'perspective(1000px) rotateY(45deg)',
-               animation: 'float 7s ease-in-out infinite',
-               animationDelay: '4s'
+              transform: 'perspective(1000px) rotateY(45deg)',
+              animation: 'float 7s ease-in-out infinite',
+              animationDelay: '4s'
              }}></div>
+
+        {/* Floating About Illustration Cluster - laptop, books, cap, megaphone */}
+        <div className="hidden lg:block absolute top-40 right-10 w-64 h-64" style={{ transform: 'translateZ(0)' }}>
+          {/* Base laptop card */}
+          <div className="absolute inset-x-6 bottom-6 rounded-3xl bg-white/70 backdrop-blur-2xl border border-purple-100/70 shadow-xl shadow-purple-200/30">
+            <div className="px-4 pt-4 pb-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-200" />
+                </div>
+                <Code2 className="w-4 h-4 text-purple-500" />
+              </div>
+              <div className="h-14 rounded-2xl border border-purple-100/70 bg-gradient-to-br from-purple-50/70 to-violet-50/40 flex items-center justify-center gap-2">
+                <div className="w-7 h-7 rounded-xl bg-white/80 border border-purple-100/80 flex items-center justify-center shadow-sm">
+                  <span className="w-3 h-3 border-l-2 border-t-2 border-purple-500 rounded-sm rotate-[-45deg]" />
+                </div>
+                <div className="flex gap-1.5">
+                  <span className="w-6 h-1.5 rounded-full bg-purple-200/80" />
+                  <span className="w-4 h-1.5 rounded-full bg-purple-100/80" />
+                </div>
+              </div>
+            </div>
+            <div className="px-4 pb-3 flex items-center justify-between text-[10px] text-gray-500">
+              <span className="flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-purple-400" />
+                clean code
+              </span>
+              <span className="flex items-center gap-1">
+                <Code2 className="w-3 h-3 text-purple-400" />
+                full stack
+              </span>
+            </div>
+          </div>
+
+          {/* Stacked books */}
+          <div className="absolute left-3 bottom-16 w-20 h-20" style={{ animation: 'float 9s ease-in-out infinite' }}>
+            <div className="absolute bottom-2 left-0 right-2 h-4 rounded-xl bg-white/80 border border-purple-100/80 shadow-md shadow-purple-200/40" />
+            <div className="absolute bottom-5 left-1 right-3 h-4 rounded-xl bg-white/90 border border-purple-100/90 shadow-md shadow-purple-200/40" />
+            <div className="absolute bottom-8 left-2 right-4 h-4 rounded-xl bg-white border border-purple-200 shadow-md shadow-purple-200/40" />
+            <div className="absolute bottom-11 left-3 right-5 h-3 rounded-xl bg-purple-100/70 border border-purple-200/80" />
+          </div>
+
+          {/* Graduation cap */}
+          <div className="absolute -top-4 left-10" style={{ animation: 'float 7s ease-in-out infinite', animationDelay: '1s' }}>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <GraduationCap className="w-8 h-8 text-purple-500" />
+            </div>
+          </div>
+
+          {/* Floating book */}
+          <div className="absolute top-1 right-4" style={{ animation: 'float 10s ease-in-out infinite', animationDelay: '2s' }}>
+            <div className="w-9 h-9 flex items-center justify-center">
+              <BookOpen className="w-7 h-7 text-purple-400" />
+            </div>
+          </div>
+
+          {/* Megaphone */}
+          <div className="absolute bottom-14 right-2" style={{ animation: 'float 8s ease-in-out infinite', animationDelay: '3s' }}>
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Megaphone className="w-6 h-6 text-purple-400" />
+            </div>
+          </div>
+
+          {/* Tiny decorative bits */}
+          <div className="absolute top-12 left-6 w-1.5 h-1.5 rounded-full bg-purple-400/70" />
+          <div className="absolute top-20 right-16 w-1 h-1 rounded-full bg-violet-400/60" />
+          <div className="absolute bottom-10 left-16 w-1 h-1 rounded-full bg-purple-300/60" />
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

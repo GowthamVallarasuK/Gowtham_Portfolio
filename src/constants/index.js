@@ -17,7 +17,7 @@ export const SOCIAL_LINKS = {
   github: 'https://github.com/GowthamVallarasuK',
   linkedin: 'https://www.linkedin.com/in/gowtham-vallarasu-99b882279/',
   email: 'https://mail.google.com/mail/u/0/#inbox',
-  leetcode: 'https://leetcode.com/u/arunrajasekaran1209/',
+  leetcode: 'https://leetcode.com/u/gowthamk___/',
   resume:
     'https://drive.google.com/file/d/1FVM80zTlDYQmbfjxaxSLr7b3T6zB2uDi/view?usp=drive_link',
 };
